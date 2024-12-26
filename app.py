@@ -27,7 +27,7 @@ def create_donut_chart(value, total, color):
     )
 
     fig.update_layout(
-        annotations=[dict(text=str(value), x=0.5, y=0.5, font_size=15, showarrow=False)],  # Center number
+        annotations=[dict(text=str(value), x=0.5, y=0.5, font_size=20, font_family='Arial', showarrow=False)],  # Center number
         margin=dict(l=0, r=20, t=0, b=0),  # Remove margins
         height=85,  # Height of the chart
         width=105,  # Width of the chart
@@ -68,25 +68,25 @@ app.layout = html.Div([
     # Metrics Section with Donut Charts
     html.Div([
         html.Div([
-            html.H5("Total", className='text-center font-weight-bold'),
-            dcc.Graph(id='total-metric', config={'displayModeBar': False})
-        ], style={'width': '20%', 'display': 'inline-block','margin-left':'50px', 'margin': '0px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px'}),
+            html.H5("Total", className='text-center font-weight-bold', style={'fontSize': '18px', 'fontFamily': 'Arial'}),
+            dcc.Graph(id='total-metric', config={'displayModeBar': False}, style={'margin-left': '115px'})
+        ], style={'width': '20%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px', 'textAlign': 'center'}),
 
         html.Div([
-            html.H5("Yes", className='text-center font-weight-bold'),
-            dcc.Graph(id='yes-metric', config={'displayModeBar': False})
-        ], style={'width': '20%', 'display': 'inline-block', 'margin-left':'50px', 'margin': '0px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px'}),
+            html.H5("Yes", className='text-center font-weight-bold', style={'fontSize': '18px', 'fontFamily': 'Arial'}),
+            dcc.Graph(id='yes-metric', config={'displayModeBar': False}, style={'margin-left': '115px'})
+        ], style={'width': '20%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px', 'textAlign': 'center'}),
 
         html.Div([
-            html.H5("No", className='text-center font-weight-bold'),
-            dcc.Graph(id='no-metric', config={'displayModeBar': False})
-        ], style={'width': '20%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px'}),
+            html.H5("No", className='text-center font-weight-bold', style={'fontSize': '18px', 'fontFamily': 'Arial'}),
+            dcc.Graph(id='no-metric', config={'displayModeBar': False}, style={'margin-left': '115px'})
+        ], style={'width': '20%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px', 'textAlign': 'center'}),
 
         html.Div([
-            html.H5("Maybe", className='text-center font-weight-bold'),
-            dcc.Graph(id='maybe-metric', config={'displayModeBar': False})
-        ], style={'width': '20%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px'})
-    ], style={'marginBottom': '20px', 'display': 'flex', 'justifyContent': 'space-around'}),
+            html.H5("Maybe", className='text-center font-weight-bold', style={'fontSize': '18px', 'fontFamily': 'Arial'}),
+            dcc.Graph(id='maybe-metric', config={'displayModeBar': False}, style={'margin-left': '115px'})
+        ], style={'width': '20%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#f5f5f5', 'padding': '15px', 'textAlign': 'center'})
+    ], style={'marginBottom': '20px', 'display': 'flex', 'justifyContent': 'center'}),
 
     # 2nd Section: Charts
     html.Div([
@@ -97,8 +97,8 @@ app.layout = html.Div([
         html.Div([
             dcc.Graph(id='bar-chart')
         ], style={'width': '48%', 'display': 'inline-block', 'margin': '10px', 'border': '2px solid #ccc', 'borderRadius': '8px', 'boxShadow': '2px 2px 8px rgba(0, 0, 0, 0.1)', 'backgroundColor': '#ffffff', 'padding': '20px'})
-    ], style={'display': 'flex', 'justifyContent': 'space-between'})
-])
+    ], style={'display': 'flex', 'justifyContent': 'center'})
+], style={'scroll': 'hidden', 'textAlign': 'center'})
 
 # Callback for updating charts and metrics
 @app.callback(
@@ -122,7 +122,7 @@ def update_charts_and_metrics(selected_topic, selected_source):
         filtered_data,
         names='Response',
         title='Response Percentages',
-        hole=0.3,
+        hole=0.7,
         color='Response',
         color_discrete_map={'Y': '#32CD32', 'N': '#FF4500', 'M': '#8A2BE2'}
     )
